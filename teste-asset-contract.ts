@@ -51,15 +51,16 @@ export class TesteAssetContract extends Contract {
         if (!exists) {
             throw new Error(`The teste asset ${testeAssetId} does not exist`);
         }
-        const PreBuffer = await ctx.stub.getState(testeAssetId);
+        const preBuffer = await ctx.stub.getState(testeAssetId);
+        const preAsset = JSON.parse(preBuffer.toString()) as SCTIEContract;
         const testeAsset = new SCTIEContract();
-        testeAsset.vendedor = PreBuffer['vendedor'];
-        testeAsset.comprador = PreBuffer['comprador'];
-        testeAsset.quantidade = PreBuffer['quantidade'];
-        testeAsset.produto = PreBuffer['produto'];
-        testeAsset.valor = PreBuffer['valor'];
+        testeAsset.vendedor = preAsset['vendedor'];
+        testeAsset.comprador = preAsset['comprador'];
+        testeAsset.quantidade = preAsset['quantidade'];
+        testeAsset.produto = preAsset['produto'];
+        testeAsset.valor = preAsset['valor'];
         testeAsset.dataVencimento = dataVencimento;
-        testeAsset.pago = PreBuffer['pago'];       
+        testeAsset.pago = preAsset['pago'];       
         const buffer = Buffer.from(JSON.stringify(testeAsset));
         await ctx.stub.putState(testeAssetId, buffer);
     }
@@ -70,17 +71,18 @@ export class TesteAssetContract extends Contract {
         if (!exists) {
             throw new Error(`The teste asset ${testeAssetId} does not exist`);
         }
-        const PreBuffer = await ctx.stub.getState(testeAssetId);
-        console.log(PreBuffer);
+        const preBuffer = await ctx.stub.getState(testeAssetId);
+        const preAsset = JSON.parse(preBuffer.toString()) as SCTIEContract;
         const testeAsset = new SCTIEContract();
-        testeAsset.vendedor = PreBuffer['vendedor'];
-        testeAsset.comprador = PreBuffer['comprador'];
-        testeAsset.quantidade = PreBuffer['quantidade'];
-        testeAsset.produto = PreBuffer['produto'];
-        testeAsset.valor = PreBuffer['valor'];
-        testeAsset.dataVencimento = PreBuffer['dataVencimento'];
-        testeAsset.pago = !PreBuffer['pago'];       
-        const buffer = Buffer.from(JSON.stringify(testeAsset));
+        testeAsset.vendedor = preAsset['vendedor'];
+        testeAsset.comprador = preAsset['comprador'];
+        testeAsset.quantidade = preAsset['quantidade'];
+        testeAsset.produto = preAsset['produto'];
+        testeAsset.valor = preAsset['valor'];
+        testeAsset.dataVencimento = preAsset['dataVencimento'];
+        testeAsset.pago = !preAsset['pago']; 
+        //const buffer = Buffer.from(JSON.stringify(testeAsset));
+        console.log(JSON.stringify(testeAsset));
         await ctx.stub.putState(testeAssetId, buffer);
     }
 
@@ -96,7 +98,7 @@ export class TesteAssetContract extends Contract {
 
     @Transaction()
     @Returns('SCTIEContract')
-    public async GetAllAssets(ctx) {
+    public async GetAllAssets(ctx: Context) {
         const allResults = [];
         // range query with empty string for startKey and endKey does an open-ended query of all assets in the chaincode namespace.
         const iterator = await ctx.stub.getStateByRange('', '');
