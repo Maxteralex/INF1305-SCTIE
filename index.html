@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCTIE</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="vsc-initialized">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SCTIE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        </div>
+    </nav>
+    <main class="container" style="margin-top: 3%;">
+        <h1>Sistema de Contrato de Trocas Inter Empresas:</h1>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-1">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <h3>Faça a leitura dos dados do contrato:</h3>
+                        </tr>
+                        <tr>
+                            <td><label for="idContrato">Id do Contrato:</label></td>
+                            <td><input type="text" name="idContrato" id="idContrato"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="comprador">Comprador:</label></td>
+                            <td><input type="text" name="comprador" id="comprador" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="vendedor">Vendedor:</label></td>
+                            <td><input type="text" name="vendedor" id="vendedor" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="comprador">Quantidade:</label></td>
+                            <td><input type="text" name="quantidade" id="quantidade" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="produto">Produto:</label></td>
+                            <td><input type="text" name="produtor" id="produtor" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="valor">Valor:</label></td>
+                            <td><input type="text" name="valor" id="valor" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dataVencimento">Data de Vencimento:</label></td>
+                            <td><input type="text" name="dataVencimento" id="dataVencimento" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="pago">Pago:</label></td>
+                            <td><input type="text" name="pago" id="pago" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" id="getme1" onclick="">Get Contract Info</button>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <h3>Faça a escrita dos dados em um novo contrato de troca:</h3>
+                        </tr>
+                        <tr>
+                            <td><label for="idContrato">Id do Contrato:</label></td>
+                            <td><input type="text" name="idContrato" id="idContrato"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="comprador">Comprador:</label></td>
+                            <td><input type="text" name="comprador" id="comprador"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="vendedor">Vendedor:</label></td>
+                            <td><input type="text" name="vendedor" id="vendedor"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="quantidade">Quantidade:</label></td>
+                            <td><input type="number" name="quantidade" id="quantidade"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="produto">Produto:</label></td>
+                            <td><input type="text" name="produtor" id="produtor"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="valor">Valor:</label></td>
+                            <td><input type="number" name="valor" id="valor"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="dataVencimento">Data de Vencimento:</label></td>
+                            <td><input type="date" name="dataVencimento" id="dataVencimento"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="pago">Pago:</label></td>
+                            <td><input type="checkbox" name="pago" id="pago"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" id="setme" onclick="">Set New Contract</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
