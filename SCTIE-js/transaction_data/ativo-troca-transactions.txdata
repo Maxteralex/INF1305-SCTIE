@@ -1,0 +1,43 @@
+[
+    {
+        "transactionName": "ativoTrocaExists",
+        "transactionLabel": "A test ativoTrocaExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "createAtivoTroca",
+        "transactionLabel": "A test createAtivoTroca transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "readAtivoTroca",
+        "transactionLabel": "A test readAtivoTroca transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "updatePagoAtivoTroca",
+        "transactionLabel": "A test updateAtivoTroca transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "deleteAtivoTroca",
+        "transactionLabel": "A test deleteAtivoTroca transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]
