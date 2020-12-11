@@ -1,10 +1,10 @@
-# INF1305-SMD
+# INF1305-SCTIE
 ## Desenvolvedores
 Alexandre Heine     1711905
 Gustavo Oliveira    1711446
 João Pedro Verçosa  1711205
 ## Informações
-Github: https://github.com/Maxteralex/INF1305-SMD
+Github: https://github.com/Maxteralex/INF1305-SCTIE
 Vídeo de Pitch no Youtube: https://www.youtube.com/watch?v=sy6hAoikuTQ
 ## Requisitos
 Node v10.23.0
