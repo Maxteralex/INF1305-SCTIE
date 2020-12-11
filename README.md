@@ -1,5 +1,11 @@
 # INF1305-SMD
-
+## Desenvolvedores
+Alexandre Heine     1711905
+Gustavo Oliveira    1711446
+João Pedro Verçosa  1711205
+## Informações
+Github: https://github.com/Maxteralex/INF1305-SMD
+Vídeo de Pitch no Youtube: https://www.youtube.com/watch?v=sy6hAoikuTQ
 ## Requisitos
 Node v10.23.0
 IBM Blockchain Platform
