@@ -1,0 +1,60 @@
+{
+    "name": "ca",
+    "version": "1.1",
+    "channels": {
+      "mychannel": {
+        "orderers": [
+          "RedeFinal_orderer.example.com"
+        ],
+        "peers": [
+          "RedeFinal_peer0.org1.example.com",
+          "RedeFinal_peer0.org2.example.com"
+        ]
+      }
+    },
+    "organizations": {
+      "Org1CA": {
+        "mspid": "Org1MSP",
+        "peers": [
+          "RedeFinal_peer0.org1.example.com"
+        ]
+      },
+      "Org2CA": {
+        "mspid": "Org2MSP",
+        "peers": [
+          "RedeFinal_peer0.org2.example.com"
+        ]
+      }
+    },
+    "orderers": {
+      "RedeFinal_orderer.example.com": {
+        "url": "grpcs://localhost:7050",
+        "grpcOptions": {
+          "ssl-target-name-override": "RedeFinal_orderer.example.com"
+        },
+        "tlsCACerts": {
+          "path": "C:/Users/jpkqv/.fabric-vscode/environments/Rede Final/wallets/Orderer/orderer/cacerts/localhost-17120-ca.pem"
+        }
+      }
+    },
+    "peers": {
+      "RedeFinal_peer0.org1.example.com": {
+        "url": "grpcs://localhost:7051",
+        "grpcOptions": {
+          "ssl-target-name-override": "RedeFinal_peer0.org1.example.com"
+        },
+        "tlsCACerts": {
+          "path": "C:/Users/jpkqv/.fabric-vscode/environments/Rede Final/wallets/Org1/admin/cacerts/localhost-17110-ca"
+        }
+      },
+      "RedeFinal_peer0.org2.example.com": {
+        "url": "grpcs://localhost:8051",
+        "grpcOptions": {
+          "ssl-target-name-override": "RedeFinal_peer0.org2.example.com"
+        },
+        "tlsCACerts": {
+          "path": "C:/Users/jpkqv/.fabric-vscode/environments/Rede Final/wallets/Org2/admin/cacerts/localhost-17115-ca"
+        }
+      }
+    }
+  }

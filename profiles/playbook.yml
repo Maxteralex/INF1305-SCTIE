@@ -1,0 +1,151 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+- name: Deploy blockchain infrastructure
+  hosts: localhost
+  vars:
+    infrastructure:
+      type: docker
+      docker:
+        network: "RedeFinal_network"
+        labels:
+          fabric-environment-name: "Rede Final"
+    organizations:
+      - &Org1
+        msp:
+          id: "Org1MSP"
+          admin:
+            identity: "org1Admin"
+            secret: "org1Adminpw"
+        ca: &Org1CA
+          id: "Org1CA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: "RedeFinal_ca.org1.example.com"
+            hostname: "RedeFinal_ca.org1.example.com"
+            port: 17110
+        peers:
+          - &Org1Peer1
+            id: "Org1Peer1"
+            identity: "org1peer1"
+            secret: "org1peer1pw"
+            database_type: couchdb
+            tls:
+              enabled: false
+            docker:
+              name: "RedeFinal_peer0.org1.example.com"
+              hostname: "RedeFinal_peer0.org1.example.com"
+              port: 17111
+              chaincode_name_prefix: "RedeFinal"
+              chaincode_port: 17112
+              operations_port: 17113
+              couchdb:
+                name: "RedeFinal_couchdb0.org1.example.com"
+                hostname: "RedeFinal_couchdb0.org1.example.com"
+                port: 17114
+        nodes: "{{ playbook_dir }}/nodes/Org1"
+        wallet: "{{ playbook_dir }}/wallets/Org1"
+        gateways: "{{ playbook_dir }}/gateways/Org1"
+      - &Org2
+        msp:
+          id: "Org2MSP"
+          admin:
+            identity: "org2Admin"
+            secret: "org2Adminpw"
+        ca: &Org2CA
+          id: "Org2CA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: "RedeFinal_ca.org2.example.com"
+            hostname: "RedeFinal_ca.org2.example.com"
+            port: 17115
+        peers:
+          - &Org2Peer1
+            id: "Org2Peer1"
+            identity: "org2peer1"
+            secret: "org2peer1pw"
+            database_type: couchdb
+            tls:
+              enabled: false
+            docker:
+              name: "RedeFinal_peer0.org2.example.com"
+              hostname: "RedeFinal_peer0.org2.example.com"
+              port: 17116
+              chaincode_name_prefix: "RedeFinal"
+              chaincode_port: 17117
+              operations_port: 17118
+              couchdb:
+                name: "RedeFinal_couchdb0.org2.example.com"
+                hostname: "RedeFinal_couchdb0.org2.example.com"
+                port: 17119
+        nodes: "{{ playbook_dir }}/nodes/Org2"
+        wallet: "{{ playbook_dir }}/wallets/Org2"
+        gateways: "{{ playbook_dir }}/gateways/Org2"
+      - &OrdererOrg
+        msp:
+          id: "OrdererMSP"
+          admin:
+            identity: "ordererAdmin"
+            secret: "ordererAdminpw"
+        ca: &OrdererCA
+          id: "OrdererCA"
+          admin_identity: "admin"
+          admin_secret: "adminpw"
+          tls:
+            enabled: false
+          docker:
+            name: "RedeFinal_ca.orderer.example.com"
+            hostname: "RedeFinal_ca.orderer.example.com"
+            port: 17120
+        orderer: &Orderer
+          id: "Orderer"
+          identity: "orderer"
+          secret: "ordererpw"
+          tls:
+            enabled: false
+          consortium:
+            members:
+              - *Org1
+              - *Org2
+          docker:
+            name: "RedeFinal_orderer.example.com"
+            hostname: "RedeFinal_orderer.example.com"
+            port: 17121
+            operations_port: 17122
+        nodes: "{{ playbook_dir }}/nodes/Orderer"
+        wallet: "{{ playbook_dir }}/wallets/Orderer"
+        gateways: "{{ playbook_dir }}/gateways/Orderer"
+    gateways:
+      - name: Org1
+        organization:
+          <<: *Org1
+          gateway_peers:
+            - *Org1Peer1
+      - name: Org2
+        organization:
+          <<: *Org2
+          gateway_peers:
+            - *Org2Peer1
+    channels:
+      - name: mychannel
+        orderer: *Orderer
+        members:
+          - <<: *Org1
+            committing_peers:
+              - *Org1Peer1
+            anchor_peers:
+              - *Org1Peer1
+          - <<: *Org2
+            committing_peers:
+              - *Org2Peer1
+            anchor_peers:
+              - *Org2Peer1
+  roles:
+    - ibm.blockchain_platform_manager
